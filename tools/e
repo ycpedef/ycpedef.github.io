@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "typora $hexo_path/source/$1.md" && 
+typora $hexo_path/source/$1.md
