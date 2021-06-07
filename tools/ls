@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "ls source/$1" && 
+ls $hexo_path/source/$1
