@@ -1,0 +1,26 @@
+#!/bin/bash
+sudo echo -e "\033[32mgot access!\033[0m"
+if [ "$?" != 0 ]; then
+    echo -e "\033[31mauthority failed (not admin)\033[0m"
+    return 1
+fi
+target=""
+temp="/tmp/hexo_tempfile"
+if [ -f $hexo_path/$1 ]; then target="$hexo_path/$1";
+elif [ -f $hexo_path/source/$1 ]; then target="$hexo_path/source/$1";
+elif [ -f $hexo_path/source/$1.md ]; then target="$hexo_path/source/$1.md";
+else
+    echo -e "\033[31mno such file!\033[0m"
+    return 2
+fi
+cp "$target" "$temp"
+echo "vim $target"
+vim $target
+if ! diff "$target" "$temp"; then
+    echo -ne "\nupload? [y/n] "
+    read a
+    if ! [ "$a" = "y" ]; then return 0; fi
+    echo -e "\033[32muploading...\033[0m"
+    sleep 1
+    $hexo_path/source/tools/upload " (update ${target#*${hexo_path}})"
+fi

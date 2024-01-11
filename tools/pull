@@ -1,0 +1,6 @@
+#!/bin/zsh
+echo -e "${fg[green]}$0${reset_color} --> cd $HOME/Workspace/hexo" &&
+builtin cd $HOME/Workspace/hexo &&
+echo -e "${fg[green]}$0${reset_color} --> git pull origin master" &&
+git pull origin master &&
+

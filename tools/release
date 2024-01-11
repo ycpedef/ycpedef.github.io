@@ -1,0 +1,13 @@
+#!/bin/bash
+echo -e "${fg[green]}$0${reset_color} --> cd ~/Workspace/hexo" &&
+builtin cd ~/Workspace/hexo && 
+echo -e "${fg[green]}$0${reset_color} --> hexo clean" &&
+hexo clean &&
+echo -e "${fg[green]}$0${reset_color} --> hexo d -g" &&
+hexo d -g -silent &&
+echo -e "${fg[green]}$0${reset_color} --> git add ~/Workspace/hexo" &&
+git add ~/Workspace/hexo &&
+date +"%F %T" | xargs -t -d'\n' git commit -m &&
+echo -e "${fg[green]}$0${reset_color} --> git push -u origin master" &&
+git push -u origin master
+
