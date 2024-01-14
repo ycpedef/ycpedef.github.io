@@ -1,6 +1,6 @@
 #!/bin/bash
-echo -e "${fg[green]}$0${reset_color} --> cd ~/Workspace/hexo" &&
-builtin cd ~/Workspace/hexo && 
+echo -e "${fg[green]}$0${reset_color} --> cd $hexo_path" &&
+builtin cd $hexo_path && 
 echo -e "${fg[green]}$0${reset_color} --> hexo clean" &&
 hexo clean &&
 echo -e "${fg[green]}$0${reset_color} --> hexo d -g" &&

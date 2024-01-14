@@ -1,7 +1,11 @@
 #!/bin/zsh
-echo -e "${fg[green]}$0${reset_color} --> git add $HOME/Workspace/hexo${reset_color}" &&
+if [ $# -gt 0 ]; then
+    msg=$1
+else
+    msg=$(date +"%F %T")
+fi
+echo -e "${fg[green]}$0${reset_color} --> git add $HOME/Blog/hexo${reset_color}" &&
 git add $HOME/Workspace/hexo &&
-tim=$(date +"%F %T")
-git commit -m "$tim" &&
+git commit -m "$msg" &&
 echo -e "${fg[green]}$0${reset_color} --> git push -u origin master${reset_color}" &&
 git push -u origin master
