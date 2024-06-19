@@ -1,0 +1,22 @@
+#!/bin/bash
+
+sudo echo -e "\033[32mpassword correct!\033[0m"
+if [ "$?" != 0 ]; then
+    echo -e "\033[31mauthority failed\033[0m"
+    return 1
+fi
+file=""
+tempfile="/tmp/hexo_tempfile"
+if [ -f $hexo_path/$1 ]; then file="$hexo_path/$1";
+elif [ -f $hexo_path/source/$1 ]; then file="$hexo_path/source/$1";
+elif [ -f $hexo_path/source/$1.md ]; then file="$hexo_path/source/$1.md";
+else
+    echo -e "\033[31mno such file!\033[0m"
+fi
+cp "$file" "$tempfile" &&
+echo "typora $file" &&
+typora $file
+if ! diff "$file" "$tempfile"; then
+    . $hexo_path/source/tools/upload
+fi
+

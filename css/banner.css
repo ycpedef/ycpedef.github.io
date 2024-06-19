@@ -1,0 +1,8 @@
+#page-header.post-bg::before {
+    background: none;
+    background-color: none;
+    content: none;
+}
+#footer::before {
+    background-color: none;
+}
